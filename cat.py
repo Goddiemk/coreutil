@@ -1,5 +1,4 @@
-import argparse
-from contextlib import closing
+import argparse,fileinput
 
 parser=argparse.ArgumentParser(add_help=False)
 parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS,
@@ -9,11 +8,10 @@ parser.add_argument('path',help='specify a file with directory to display its te
 args=parser.parse_args()
 
 if args.path:
-    filename=args.path
-    file=open(filename,'r')
-    with closing (file) as page:
-        for line in page:
-            print (line)
 
+    filename=args.path
+    with fileinput.input(files=(filename)) as f:
+        for line in f:
+            print (line)
 
 
