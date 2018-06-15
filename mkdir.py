@@ -10,7 +10,7 @@ args=parser.parse_args()
 try:
     if args.path and args.parents:
         pathlib.Path(args.path).mkdir(parents=True)
-    if args.path:
+    elif args.path:
         try:
             pathlib.Path(args.path).mkdir()
         except:
