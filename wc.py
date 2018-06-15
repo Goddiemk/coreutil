@@ -12,6 +12,6 @@ try:
         wordcount += len(line.split(None))
         charcount += len(line)
     print("%d %d %d %s" % (linecount, wordcount, charcount, args.path))
-except IOError:
+except FileNotFoundError:
     print("File %s not found" % args.path)
     raise SystemExit
