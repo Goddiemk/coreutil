@@ -8,4 +8,9 @@ parser.add_argument('origin',help='specify the directory of the original locatio
 parser.add_argument('dest',help='specify the directory of the destination of file to be copied')
 
 args=parser.parse_args()
-shutil.copy(args.origin,args.dest)
+if args.origin and args.dest:
+        try:
+            shutil.copy(args.origin,args.dest)
+        except:
+            FileNotFoundError
+            print("Specified directory is not found")
