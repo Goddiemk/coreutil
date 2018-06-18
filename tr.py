@@ -11,12 +11,7 @@ parser.add_argument('-d', '--delete', help='delete characters in set1', action='
 parser.add_argument('-s', '--squeeze', help='replace each sequence of a repeated character that is listed in'
                                             'the last specified SET, with a single occurrence of that character',
                     action='store_true')
-args = parser.parse_args()
-
-source = '%s' % args.source
-final = source.translate(str.maketrans(args.set1, args.set2))
-print(final)
-
+args=parser.parse_args()
 if args.squeeze:
     for char in args.set1:
         pattern = '%s{2,}' % re.escape(char)
@@ -31,3 +26,8 @@ elif args.complement:
         pattern = '[^%s]' % args.set1
         args.source = re.sub(pattern, args.set2, args.source)
     print(args.source)
+else:
+    args = parser.parse_args()
+    source = '%s' % args.source
+    final = source.translate(str.maketrans(args.set1, args.set2))
+    print(final)
